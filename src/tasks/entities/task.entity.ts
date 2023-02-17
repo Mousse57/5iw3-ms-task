@@ -11,8 +11,9 @@ export class Task {
   name: string;
 
   @Property()
-  dueDate: Date;
+  dueDate: Date = new Date();
 
+  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   @Property()
   done: boolean = false;
 }
