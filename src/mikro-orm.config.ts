@@ -1,15 +1,12 @@
-import { MikroOrmModuleOptions } from '@mikro-orm/nestjs';
+import { MikroOrmModuleSyncOptions } from '@mikro-orm/nestjs';
 import { Task } from './tasks/entities/task.entity';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export default {
   entities: [Task],
-  password: 'rootpw',
+  type: 'mysql',
   dbName: 'task',
-  type: 'mysql', // one of `mongo` | `mysql` | `mariadb` | `postgresql` | `sqlite`
-  driverOptions: {
-    connection: {
-      host: 'localhost',
-      port: 3306,
-    },
-  },
-} as MikroOrmModuleOptions;
+  clientUrl: process.env.DB_URL,
+} as MikroOrmModuleSyncOptions;
