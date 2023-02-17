@@ -8,8 +8,8 @@ export default {
   type: 'mysql', // one of `mongo` | `mysql` | `mariadb` | `postgresql` | `sqlite`
   driverOptions: {
     connection: {
-      host: 'database',
+      host: 'localhost',
       port: 3306,
     },
-  }
+  },
 } as MikroOrmModuleOptions;
