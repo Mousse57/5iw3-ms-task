@@ -2,6 +2,7 @@ import { Controller } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { GrpcMethod } from '@nestjs/microservices';
 import { CreateTaskRequest, Task } from 'stubs/task/v1alpha/task';
+import { CreateTaskDto, toJs } from './dto/create-task.dto';
 
 @Controller()
 export class TasksController {
@@ -9,9 +10,10 @@ export class TasksController {
 
   @GrpcMethod('TaskService')
   async CreateTask(request: CreateTaskRequest): Promise<Task> {
-    const { task } = request;
-    console.log({ task });
+    const task = await this.tasksService.create(
+      new CreateTaskDto(request.task),
+    );
 
-    return task;
+    return { ...task, dueDate: task.dueDate.toISOString() } as any;
   }
 }
