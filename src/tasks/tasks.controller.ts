@@ -2,8 +2,8 @@ import { Controller } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { GrpcMethod, RpcException } from '@nestjs/microservices';
 import { CreateTaskRequest, Task } from 'stubs/task/v1alpha/task';
-import { CreateTaskDto, toJs } from './dto/create-task.dto';
-import { Status } from '@grpc/grpc-js/build/src/constants';
+import { CreateTaskDto } from './dto/create-task.dto';
+import { status } from '@grpc/grpc-js';
 
 @Controller()
 export class TasksController {
@@ -21,8 +21,8 @@ export class TasksController {
       console.log({ error });
       if (error?.code === 'P2002') {
         throw new RpcException({
-          code: Status.INVALID_ARGUMENT,
-          message: request.task.name + ' is alreqdy taken',
+          code: status.INVALID_ARGUMENT,
+          message: request.task.name + ' is already taken',
         });
       }
 
