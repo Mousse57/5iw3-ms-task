@@ -1,5 +1,12 @@
 
 
+## [0.1.1](https://github.com/MohammadBnei/5iw3-ms-task/compare/0.1.0...0.1.1) (2023-02-17)
+
+
+### Bug Fixes
+
+* **mikro-orm:** fixed url ([32ca652](https://github.com/MohammadBnei/5iw3-ms-task/commit/32ca652433205f857a107c233553147f11569469))
+
 # 0.1.0 (2023-02-17)
 
 
